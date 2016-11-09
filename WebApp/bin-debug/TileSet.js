@@ -18,7 +18,6 @@ var TileSet = (function (_super) {
             this.tiles = new Array(length);
         }
         this.sprites = new Array(this.tiles.length);
-        // this.sprites = new Tile(4, -1)[this.tiles.length];
         this.render();
     }
     var d = __define,c=TileSet,p=c.prototype;
