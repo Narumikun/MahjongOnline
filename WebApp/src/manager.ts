@@ -1,0 +1,6 @@
+class manager {
+	
+	public constructor() {
+		
+	}
+}
