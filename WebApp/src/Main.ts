@@ -114,6 +114,7 @@ class Main extends egret.DisplayObjectContainer {
      * 创建游戏场景
      * Create a game scene
      */
+    private manager: Manager;
     private createGameScene(): void {
         var stageW = this.stage.stageWidth;
         var stageH = this.stage.stageHeight;
@@ -123,11 +124,15 @@ class Main extends egret.DisplayObjectContainer {
         bg.width = stageW;
         bg.height = stageH;
         this.addChild(bg);
+
+        this.manager = new Manager();
+        this.addChild(this.manager);
+        return;
         var array = new Array<number>(14);
         for (var i = 0; i < array.length; i++){
             array[i] = i * 2 + 1;
         }
-        var myTiles = new TileSet(4, array, 0, false);
+        var myTiles = new TileSet(4, array, 0);
         // var myTiles = new TileSet(array, array.length, 1, false);
         myTiles.x = (stageW - myTiles.width) / 2;
         myTiles.y = (stageH - myTiles.height) / 2;
