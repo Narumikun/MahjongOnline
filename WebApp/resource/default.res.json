@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "description_json,bg_jpg,tiles",
+			"keys": "description_json,bg_jpg,tiles,default_avatar_png",
 			"name": "preload"
 		}
 	],
@@ -21,6 +21,11 @@
 			"type": "sheet",
 			"name": "tiles",
 			"subkeys": "1,10,11,12,13,14,15,16,17,18,19,2,20,21,22,23,24,25,26,27,28,29,3,30,31,32,33,34,35,36,37,38,39,4,40,41,42,5,6,7,8,9,box0,box1,box2,box3,box4,box5,box6,box7"
+		},
+		{
+			"name": "default_avatar_png",
+			"type": "image",
+			"url": "assets/default_avatar.png"
 		}
 	]
 }

@@ -2,15 +2,16 @@ class UserInfo extends egret.Sprite {
     private nameField: egret.TextField;
     private avatar: egret.Bitmap;
     public isHorizontal: boolean;
-    public constructor(name: string = "not login", avatar: string = "", isHorizontal: boolean = true) {
+    public constructor(isHorizontal: boolean = true, name: string = "not login", avatar: string = "") {
         super();
         this.isHorizontal = isHorizontal;
         this.nameField = new egret.TextField();
-        this.avatar = new egret.Bitmap(RES.getRes("defaultAvatar"));
+        this.avatar = new egret.Bitmap(RES.getRes("default_avatar_png"));
         this.setName(name);
         this.setAvatar(avatar);
         this.addChild(this.nameField);
         this.addChild(this.avatar);
+        this.nameField.y = 72;
     }
 
     public setName(name: string) {
@@ -22,28 +23,41 @@ class UserInfo extends egret.Sprite {
 
     public setAvatar(avatar: string) {
         if (avatar != "") {
-            // RES.getResByUrl(avatar, this.onAvatarLoaded, this);
-            RES.getResByUrl(avatar, function (event) {
-                this.avatar.texture = <egret.Texture>event;
-            }, this);
+            RES.getResByUrl(avatar, this.onAvatarLoaded, this);
+            // var imgLoader = new egret.ImageLoader();
+            // imgLoader.once(egret.Event.COMPLETE, this.onAvatarLoaded, this);
+            // imgLoader.load(avatar);
+            console.log("CAUTION!! "+avatar);
+            return;
+            var loader = new egret.URLLoader();
+            loader.dataFormat = egret.URLLoaderDataFormat.TEXTURE;
+            var request = new egret.URLRequest(avatar);
+            loader.load(request);
+            loader.addEventListener(egret.Event.COMPLETE, this.onAvatarLoaded, this);
+            // RES.getResByUrl(avatar, this.onAvatarLoaded, this, RES.ResourceItem.TYPE_IMAGE);
         }
     }
-    // private onAvatarLoaded(event:any) {
-    //     this.avatar.texture = <egret.Texture>event;
-    // }
+
+    private onAvatarLoaded(event: any) {
+        // this.avatar.bitmapData = event.currentTarget.data;
+        this.avatar.texture = <egret.Texture>event;
+        this.avatar.width = 72;
+        this.avatar.height = 72;
+    }
 }
 
-class TileSet extends egret.Sprite{
+class TileSet extends egret.Sprite {
     public tiles: Array<number>;
     public sprites: Array<Tile>;
     public boxStyle: number; //0~7;0亮牌-1手牌,box style
-
+    public maxLength: number;
     public static tileWidth: number[] = [54, 48, 54, 48, 54, 38, 54, 38];
-    public static tileHeight: number[] = [70, 70, 70, 70, 70, 32, 70, 32];
+    public static tileHeight: number[] = [66, 66, 66, 66, 66, 32, 66, 32];
 
     public constructor(boxStyle: number = 4, tiles: Array<number> = new Array<number>(),
-                       length: number = 0) {
+        length: number = 0, maxLength: number = 20) {
         super();
+        this.maxLength = maxLength;
         if (boxStyle < 0 || boxStyle > 11) {
             boxStyle = 4;
         }
@@ -72,19 +86,14 @@ class TileSet extends egret.Sprite{
             this.render();
         }
     }
-    
+
     private render() {
         this.removeChildren();
-        if (this.boxStyle > 7) {
-            var maxLength: number = 6;
-        } else {
-            var maxLength: number = 20;
-        }
 
-        for (var i = 0, len = this.tiles.length; i < len; i++){
+        for (var i = 0, len = this.tiles.length; i < len; i++) {
             this.sprites[i] = new Tile(this.boxStyle, this.tiles[i]);
-            this.sprites[i].x = (i % maxLength) * TileSet.tileWidth[this.boxStyle % 8];
-            this.sprites[i].y = Math.floor(i / maxLength) * TileSet.tileHeight[this.boxStyle];
+            this.sprites[i].x = (i % this.maxLength) * TileSet.tileWidth[this.boxStyle % 8];
+            this.sprites[i].y = Math.floor(i / this.maxLength) * TileSet.tileHeight[this.boxStyle % 8];
             if (this.boxStyle == 4) {
                 this.sprites[i].touchEnabled = true;
                 this.sprites[i].addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTouchTile, this);
@@ -92,7 +101,7 @@ class TileSet extends egret.Sprite{
             // this.sprites[i] = tile;
             this.addChild(this.sprites[i]);
         }
-        if (this.boxStyle % 4 == 3) {
+        if (this.boxStyle % 4 == 3 || this.boxStyle == 10) {
             //逆序排列
             for (var i = 0, len = this.tiles.length; i < len / 2; i++) {
                 this.swapChildren(this.sprites[i], this.sprites[len - i - 1]);
@@ -101,10 +110,14 @@ class TileSet extends egret.Sprite{
     }
 
     private onTouchTile(event: egret.TouchEvent) {
-        for (let sprite of this.sprites) {
-            sprite.y = 0;
+        if (event.currentTarget.y != 0) {
+            event.currentTarget.y = 0;
+        } else {
+            for (let sprite of this.sprites) {
+                sprite.y = 0;
+            }
+            event.currentTarget.y = - event.currentTarget.height / 3;
         }
-        event.currentTarget.y = -event.currentTarget.y - event.currentTarget.height / 3;
     }
 }
 
@@ -112,12 +125,12 @@ class Tile extends egret.Sprite {
     public box: number;
     public card: number;
 
-    public constructor(box: number=null, card: number = -1) {
+    public constructor(box: number = null, card: number = -1) {
         super();
         if (box < 0 || box > 11) {
             this.box = 4;
             this.card = -1;
-        } else if (box >=5&&box<=7) { // 其他三方手牌 不可见
+        } else if (box >= 5 && box <= 7) { // 其他三方手牌 不可见
             this.box = box;
             this.card = -1;
         } else {
