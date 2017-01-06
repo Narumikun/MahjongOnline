@@ -1,6 +1,0 @@
-{"file":"actions.png","frames":{
-"Pass":{"x":82,"y":82,"w":80,"h":80,"offX":0,"offY":0,"sourceW":80,"sourceH":80},
-"Chow":{"x":82,"y":0,"w":80,"h":80,"offX":0,"offY":0,"sourceW":80,"sourceH":80},
-"Kong":{"x":164,"y":0,"w":80,"h":80,"offX":0,"offY":0,"sourceW":80,"sourceH":80},
-"Pong":{"x":0,"y":82,"w":80,"h":80,"offX":0,"offY":0,"sourceW":80,"sourceH":80},
-"Win":{"x":0,"y":0,"w":80,"h":80,"offX":0,"offY":0,"sourceW":80,"sourceH":80}}}

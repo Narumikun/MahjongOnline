@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The page you were looking for doesn't exist (404)</title>
+    <script type="text/javascript" src="/error/error.js"></script>
+    <link rel="stylesheet" type="text/css" href="/error/error.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+<body>
+<div id="div1">
+    <div class="header">
+        <h1>Oops...</h1>
+        <% if(typeof(info) == "undefined"){info='Something went wrong.'}  %>
+        <p><%= info %></p>
+        <p class="small">
+            Scan it in <img src="error/wechat_logo.png" ><b> WeChat</b> to get some helps.
+        </p>
+    </div>
+</div>
+<div id="div2">
+    <div class="img-container">
+        <img src="error/qrcode.jpg">
+    </div>
+</div>
+</body>
+</html>

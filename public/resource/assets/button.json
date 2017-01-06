@@ -1,0 +1,12 @@
+{"file":"button.png","frames":{
+"Chow":{"x":191,"y":0,"w":76,"h":58,"offX":0,"offY":9,"sourceW":80,"sourceH":80},
+"director":{"x":0,"y":0,"w":120,"h":120,"offX":0,"offY":0,"sourceW":120,"sourceH":120},
+"Discard":{"x":205,"y":122,"w":49,"h":59,"offX":16,"offY":11,"sourceW":80,"sourceH":80},
+"Kong":{"x":198,"y":186,"w":66,"h":55,"offX":7,"offY":12,"sourceW":80,"sourceH":80},
+"Liuju":{"x":0,"y":122,"w":132,"h":78,"offX":0,"offY":1,"sourceW":140,"sourceH":80},
+"mute_on":{"x":0,"y":202,"w":48,"h":48,"offX":0,"offY":0,"sourceW":48,"sourceH":48},
+"mute_off":{"x":50,"y":202,"w":48,"h":48,"offX":0,"offY":0,"sourceW":48,"sourceH":48},
+"Pass":{"x":134,"y":186,"w":62,"h":61,"offX":9,"offY":10,"sourceW":80,"sourceH":80},
+"Pong":{"x":134,"y":122,"w":69,"h":62,"offX":6,"offY":9,"sourceW":80,"sourceH":80},
+"rect":{"x":122,"y":75,"w":105,"h":45,"offX":0,"offY":0,"sourceW":105,"sourceH":45},
+"Win":{"x":122,"y":0,"w":67,"h":73,"offX":3,"offY":4,"sourceW":80,"sourceH":80}}}

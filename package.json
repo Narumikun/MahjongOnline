@@ -1,0 +1,44 @@
+{
+  "name": "mahjongonline",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "test": "mocha ./scripts/test.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.duapp.com/appidr93d0er76d"
+  },
+  "description": "hello mahjong",
+  "main": "server.js",
+  "dependencies": {
+    "async": "^2.1.4",
+    "ava": "^0.17.0",
+    "body-parser": "^1.15.2",
+    "chai": "^3.5.0",
+    "cookie-parser": "^1.4.3",
+    "debug": "^2.2.0",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "log4js": "^0.6.9",
+    "mocha": "^3.2.0",
+    "morgan": "^1.7.0",
+    "mysql": "^2.0.0-alpha9",
+    "orm": "^3.2.0",
+    "serve-favicon": "^2.3.2",
+    "socket.io": "^1.7.2",
+    "thrift": "^0.9.1",
+    "util": "^0.10.3",
+    "wechat": "^2.0.3",
+    "wechat-xml-parser": "^0.0.2",
+    "xml2js": "^0.4.17"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "mahjong",
+    "wechat"
+  ],
+  "author": "The Missing 4",
+  "license": "ISC"
+}

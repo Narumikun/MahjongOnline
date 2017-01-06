@@ -1,0 +1,8 @@
+{
+    "maxImageWidth": 2014,
+    "maxImageHeight": 2014,
+    "defaultResPath": "c:\\Users\\Narumi\\PycharmProjects\\appid1xbtg7v1ee\\templates\\resource\\default.res.json",
+    "packGroups": {
+        "preload": true
+    }
+}

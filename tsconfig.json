@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "locale": "zh-CN"
+//    "outDir": "public/src"
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include":[
+    "public/src"
+  ]
+}

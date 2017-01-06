@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>小小麻将（Room <%=room_id%> ）</title>
+    <% if(typeof(room_id) == "undefined"){room_id=0000} %>
+    <% if(typeof(user_id) == "undefined"){user_id='default_user'} %>
+    <meta name="room_id" id="room_id" content="<%=room_id%>"/>
+    <meta name="user_id" id="user_id" content="<%=user_id%>"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="full-screen" content="true"/>
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="360-fullscreen" content="true"/>
+    <style>
+        html, body {
+            -ms-touch-action: none;
+            /*background: #125262;*/
+            padding: 0;
+            border: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        body {
+            /*custom bg*/
+            background: url("resource/assets/bg.webp");
+            background-size: 100% 100%;
+        }
+    </style>
+
+    <!--这个标签为通过egret提供的第三方库的方式生成的 javascript 文件。删除 modules_files 标签后，库文件加载列表将不会变化，请谨慎操作！-->
+    <!--modules_files_start-->
+    <!--<script egret="lib" src="libs/modules/egret/egret.js" src-release="libs/modules/egret/egret.min.js"></script>-->
+    <!--<script egret="lib" src="libs/modules/egret/egret.web.js"-->
+    <!--src-release="libs/modules/egret/egret.web.min.js"></script>-->
+    <!--<script egret="lib" src="libs/modules/game/game.js" src-release="libs/modules/game/game.min.js"></script>-->
+    <!--<script egret="lib" src="libs/modules/game/game.web.js" src-release="libs/modules/game/game.web.min.js"></script>-->
+    <!--<script egret="lib" src="libs/modules/res/res.js" src-release="libs/modules/res/res.min.js"></script>-->
+    <!--<script egret="lib" src="libs/modules/tween/tween.js" src-release="libs/modules/tween/tween.min.js"></script>-->
+    <!--<script egret="lib" src="libs/modules/socketio/socketio.js"-->
+    <!--src-release="libs/modules/socketio/socketio.min.js"></script>-->
+    <script egret="lib" src="libs/modules/egret/egret.min.js"></script>
+    <script egret="lib" src="libs/modules/egret/egret.web.min.js"></script>
+    <script egret="lib" src="libs/modules/game/game.min.js"></script>
+    <script egret="lib" src="libs/modules/game/game.web.min.js"></script>
+    <script egret="lib" src="libs/modules/res/res.min.js"></script>
+    <script egret="lib" src="libs/modules/tween/tween.min.js"></script>
+    <!--<script egret="lib" src="libs/modules/socketio/socketio.min.js"></script>-->
+
+    <!--modules_files_end-->
+
+    <!--这个标签为不通过egret提供的第三方库的方式使用的 javascript 文件，请将这些文件放在libs下，但不要放在modules下面。-->
+    <!--other_libs_files_start-->
+    <!--<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>-->
+    <!--<script src="libs/js/jszip.js" src-release="libs/js/jszip.min.js"></script>-->
+    <!--other_libs_files_end-->
+
+    <!--这个标签会被替换为项目中所有的 javascript 文件。删除 game_files 标签后，项目文件加载列表将不会变化，请谨慎操作！-->
+    <!--game_files_start-->
+    <!--<script src="js/scripts.js"></script>-->
+    <script src="js/socket.io.min.js"></script>
+    <script egret="game" src="bin-debug/Actions.js"></script>
+    <script egret="game" src="bin-debug/data.js"></script>
+    <script egret="game" src="bin-debug/Directors.js"></script>
+    <script egret="game" src="bin-debug/LoadingUI.js"></script>
+    <script egret="game" src="bin-debug/Main.js"></script>
+    <script egret="game" src="bin-debug/manager.js"></script>
+    <script egret="game" src="bin-debug/Others.js"></script>
+    <script egret="game" src="bin-debug/SocketHandler.js"></script>
+    <script egret="game" src="bin-debug/test.js"></script>
+    <script egret="game" src="bin-debug/TileSet.js"></script>
+    <!--game_files_end-->
+</head>
+<body>
+
+<div style="margin: auto;width: 100%;height: 100%;" class="egret-player"
+     data-entry-class="Main"
+     data-orientation="landscape"
+     data-scale-mode="showAll"
+     data-frame-rate="30"
+     data-content-width="1024"
+     data-content-height="640"
+     data-show-paint-rect="false"
+     data-multi-fingered="2"
+     data-show-fps="false" data-show-log="false"
+     data-show-fps-style="x:0,y:0,size:12,textColor:0xffffff,bgAlpha:0.9">
+</div>
+<script>
+  /**
+   * {
+     * "renderMode":, //引擎渲染模式，"canvas" 或者 "webgl"
+     * "audioType": "" //使用的音频类型，0:默认，1:qq audio，2:web audio，3:audio
+     * "antialias": //WebGL模式下是否开启抗锯齿，true:开启，false:关闭，默认为false
+     * }
+   **/
+  egret.runEgret({renderMode: "canvas", audioType: 0});
+</script>
+
+<!--sources for audio player, load sources in manager.ts-->
+<audio id="bgm_player" hidden="hidden" src="resource/assets/music.mp3" preload="auto" loop="loop"></audio>
+<audio id="effect_player" hidden="hidden" src="resource/assets/sound_effects.mp3" preload="auto"></audio>
+<audio id="result_player" hidden="hidden" src="resource/assets/result_effects.mp3" preload="auto"></audio>
+
+<script type="text/javascript" src="bin-debug/test.js"></script>
+<script>
+  if(window.location.href.indexOf('test')>=0){
+    console.log('start test');
+    new Tester().startTest();
+  }
+</script>
+</body>
+</html>
